@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int n = 10;  //全局变量
+
+/*************子函数************/
+void func1()
+{
+	int n = 20;  //局部变量
+	printf("func1 n: %d\n", n);
+}
+
+void func2(int n)
+{
+	printf("func2 n: %d\n", n);
+}
+void func3()
+{
+	printf("func3 n: %d\n", n);
+}
+
+/*************main函数************/
+
+int main()
+{
+	int n = 30;  //局部变量
+
+	func1();//输出为20，是因为子函数中定义的n=20;
+	func2(n);//把n=30传过去
+	func3();//n=30只是在main函数里，出了main函数就是全局变量n=10;
+
+	//代码块由{}包围
+	{
+		int n = 40;  //局部变量
+		printf("block n: %d\n", n);//只是中括号里n被改变，main主体还是30
+	}
+	printf("main n: %d\n", n);//输出为主函数里n的值
+	getchar();
+	return 0;
+}
